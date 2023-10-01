@@ -1,0 +1,57 @@
+span {
+    font-weight: bold;
+}
+
+#content {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a {
+  color: white;
+}
+
+body {
+    font-family: Helvetica;
+    margin: 0;
+  }
+  a {
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+  }
+  .site-header { 
+    border-bottom: 1px solid #ccc;
+    padding: .5em 1em;
+    display: flex;
+    justify-content: space-between;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  }
+  
+  .site-identity h1 {
+    font-size: 1.5em;
+    margin: .6em 0;
+    display: inline-block;
+  }
+  
+  
+  .site-navigation ul, 
+  .site-navigation li {
+    margin: 0; 
+    padding: 0;
+  }
+  
+  .site-navigation li {
+    display: inline-block;
+    margin: 1.4em 1em 1em 1em;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    margin-right: 12em;
+    margin-left: 12em;
+  }
