@@ -18,7 +18,7 @@
             <div class="col-12 form-check ">
                 <input class="form-check-input" type="radio" value="solo" name="typeGame" id="solo">
                 <label class="form-check-label" for="typeGame">
-                Solo
+                Solo des famille zjjz
                 </label>
             </div>
         </div>
