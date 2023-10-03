@@ -70,6 +70,7 @@ class Combattant {
             }
         
         } else {
+            $this->sante = 0;
             $this->setIsDead();
         }
     }

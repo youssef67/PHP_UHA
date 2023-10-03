@@ -61,9 +61,9 @@ body {
 
   .solo-img {
     max-width: 100%;
-    max-height: 550px;
+    height: 50%;
   }
 
   .card-solo {
-    max-height: 200px;
+    max-height: 100px;
   }

@@ -1,12 +1,12 @@
 <?php
-    session_start();
-
     require_once("classes/database.class.php");
     require_once("classes/combattant.class.php");
     require_once("classes/arme.class.php");
     require_once("classes/armure.class.php");
     require_once("classes/race.class.php");
     require_once("classes/arene.class.php");
+    session_start();
+
     $database = new Database();
 ?>
 
@@ -24,17 +24,20 @@
         <div class="container-fluid text-center">         
             <?php 
 
-                if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET["typeGame"]) && ($_GET["typeGame"] == "solo" || $_GET["typeGame"] == "trio")) {
-                    include "pages/solo.php";
-                } elseif ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET["action"])) {
-                    if ($_GET["action"] == "soloStart") {
-                        include "pages/soloStart.php";
+                if ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET["nombreCombattant"])) {
+                    if ($_GET["nombreCombattant"] % 2 == 0) {
+                        include "pages/presentation.php";
+                    } else {
+                        echo "Veuillez définir un nombre pair";
+                        include "components/typeGame.php";
                     }
-                }
+                } elseif ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET["action"]) && $_GET["action"] == "startCombat") {
+                    include "pages/startCombat.php";
+                } elseif ($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET["winner"]) && !empty($_GET["winner"]))
+                    include "components/winner.php";
                 else {
                     include "components/typeGame.php";
                 }
-
                
             ?>
         </div>

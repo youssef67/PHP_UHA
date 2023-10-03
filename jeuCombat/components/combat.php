@@ -1,29 +1,21 @@
 <?php
-    while($equipe1->getSante() > 0 && $equipe2->getSante() > 0) {
-        if ($equipe1->getSante() > 0) {
+    while($equipeA[$indexA]->getSante() > 0 && $equipeB[$indexB]->getSante() > 0) {
+        if ($equipeA[$indexA]->getSante() > 0) {
             $couleurCard = "#e93f32";
-            $attaquant = $equipe1;
-            $defenseur = $equipe2;
-            $equipe1->lanceUneAttaque($defenseur);
+            $attaquant = $equipeA[$indexA];
+            $defenseur = $equipeB[$indexB];
+            $attaquant->lanceUneAttaque($defenseur);
+            $equipe = " de l'equipe A";
             include "actionCombat.php";
         }
 
-        if ($equipe2->getSante() > 0) {
+        if ($equipeB[$indexB]->getSante() > 0) {
             $couleurCard = "green";
-            $attaquant = $equipe2;
-            $defenseur = $equipe1;
+            $attaquant = $equipeB[$indexB];
+            $defenseur = $equipeA[$indexA];
             $attaquant->lanceUneAttaque($defenseur);
+            $equipe = " de l'equipe B";
             include "actionCombat.php";
         }
     }
 ?>
-<!-- <?php if($equipe1->getIsDead()) { ?>
-<div class="row justify-content-center">
-    <div class="col">
-        <p><?= $equipe1->getPrenom(); ?> est mort !</p>
-        <p><?= $equipe2->getPrenom(); ?> sort vainqueur du combat !</p> 
-    </div>
-</div>
-<?php } else { ?>
-
-<?php } ?> -->
