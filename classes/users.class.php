@@ -20,6 +20,17 @@ class User {
         return $conn->selectOne($this->table, $col, $value);
     }
 
+    public function insert($firstname, $lastname, $identifiant, $password, $userRole) {
+        $conn = new Database();
+        
+        $fieldsValues = "(`firstname`, `lastname`, `identifiant`, `password`, `user_role`)";
+        $values = "('". $firstname ."','". $lastname ."','". $identifiant ."','". $password . "','" . $userRole . "')";
+
+        $userId = $conn->insert($this->table, $fieldsValues,  $values);
+        return $this->selectOne("user_id", $userId);
+        
+    }
+
 
 }
 

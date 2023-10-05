@@ -31,26 +31,13 @@ class Database {
         $query = "SELECT * FROM `" . $table . "` WHERE `" . $colValue . "` = '" . $value . "'";
         $res = $this->executeRequest($query);
         return $res[0];
-    } 
-
-    //insert
-    public function insertEntry(String $firstname, String $lastname, String $identifiant, int $password, String $userRole): String|false {
-        $query = "INSERT INTO `users`(`firstname`, `lastname`, `identifiant`, `password`, `user_role`) 
-        VALUES ('". $firstname ."','". $lastname ."','". $identifiant ."','". $password . "','" . $userRole . "')";
-        $entriesStatement = $this->connection->prepare($query);
-        $this->executeRequest($query, $entriesStatement);
-        return $this->connection->lastInsertId();
     }
-
-
-    //get
-    public function selectEntryByValue(mixed $field, mixed $value) {
-        $query = "SELECT * FROM users WHERE ". $field .' = "' . $value . '"';
-        $entriesStatement = $this->connection->prepare($query);
-        $this->executeRequest($query, $entriesStatement);
-        return $entriesStatement->fetchAll();
+    
+    public function insert($table, $fieldsValues, $values) {
+        $query = "INSERT INTO `" . $table ."` " . $fieldsValues . " VALUES " .$values;
+        $res = $this->executeRequest($query);
+        return $res;
     }
-
 
     //update
     public function updateEntry($id, $firstname, $lastname, $identifiant, $role) {

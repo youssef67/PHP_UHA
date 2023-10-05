@@ -4,16 +4,16 @@
     require_once("classes/users.class.php");
 
     // Si formulaire de connexion envoyé, création des variables de session
-    if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["identifiant"]) && isset($_POST["password"])) {
-        $_SESSION["adminOk"] = $database->checkIfAdmin($_POST["identifiant"], $_POST["password"]);
-        $_SESSION["adminOk"] ? header("Location: index.php?nomPage=adminDisconnect") : header("Location: index.php?nomPage=adminConnect&error=true");
-    }
+    // if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["identifiant"]) && isset($_POST["password"])) {
+    //     $_SESSION["adminOk"] = $database->checkIfAdmin($_POST["identifiant"], $_POST["password"]);
+    //     $_SESSION["adminOk"] ? header("Location: index.php?nomPage=adminDisconnect") : header("Location: index.php?nomPage=adminConnect&error=true");
+    // }
     
-    // Si demande de connexion, suppresion des varaibles de sessions
-    if (isset($_GET["deconnexion"]) && $_GET["deconnexion"] == "ok") {
-        session_destroy();
-        header("Location: index.php?nomPage=accueil");
-    }
+    // // Si demande de connexion, suppresion des varaibles de sessions
+    // if (isset($_GET["deconnexion"]) && $_GET["deconnexion"] == "ok") {
+    //     session_destroy();
+    //     header("Location: index.php?nomPage=accueil");
+    // }
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,10 +56,8 @@
                     // Pour inserer un user en base de donnée   
                     } elseif ($_GET["action"] == "insert") {
                         include "components/smallMenu.php";
-                        include "commandSQL/insertSQL.php";
                         
-                        // Appel de la requete SQL + liste des users MAJ
-                        include "commandSQL/selectOneSQL.php";
+                        //liste des users MAJ
                         include "components/listeOneUser.php";
                     // Pour modifier ou inserer un utilisateur
                     } else  {

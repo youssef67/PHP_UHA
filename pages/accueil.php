@@ -22,7 +22,7 @@
         </div>
         </div>
     </div>
-    <?php if(isset($_SESSION["adminOk"])) { ?>
+    <?php //if(isset($_SESSION["adminOk"])) { ?>
     <div class="col-sm-6 mb-3 mb-sm-0 p-3">
         <div class="card">
         <div class="card-body">
@@ -42,5 +42,5 @@
         </div>
         </div>
     </div>
-    <?php } ?>
+    <?php //} ?>
 </div>

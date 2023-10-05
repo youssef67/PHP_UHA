@@ -1,24 +1,20 @@
 <?php 
-    if ($_GET["action"] == "selectOne") {
-        echo "<h2 style='margin: 30px;'>Détail du user</h2>";
-    } else {
-
-        echo "<h2 style='margin: 30px;'>Entrée validée</h2>";
-        echo "<h3>Récapitulatif du nouvel utilisateur</h3>";
-    }
+    $userBdd = new User();
 
     // Si recherche 
     if (isset($_POST["select-fieldSearch"]) && !empty($_POST["select-fieldSearch"])) {
+        echo "<h2 style='margin: 30px;'>Détail du user</h2>";
         $col = $_POST["select-fieldSearch"];
         $value = $_POST["select-valueSearch"];
+
+        $user = $userBdd->selectOne($col, $value);
     //Si update
     } else {
-        $col = "user_id";
-        $value = $lastInsertId;
+        echo "<h2 style='margin: 30px;'>Entrée validée</h2>";
+        echo "<h3>Récapitulatif du nouvel utilisateur</h3>";
+        $user = $userBdd->insert($_POST["prenom"], $_POST["nom"], $_POST["identifiant"], $_POST["password"], $_POST["role"]);
     }
-    
-    $userBdd = new User();
-    $user = $userBdd->selectOne($col, $value);
+  
 ?>
 
 <div class="row">
@@ -56,4 +52,4 @@
         </table>
     </div>
 </div>
-                    
+                     
