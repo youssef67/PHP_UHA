@@ -10,24 +10,27 @@ class Database {
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public function executeRequest(String $query, PDOStatement $statement) {
+    public function executeRequest(String $req) {
 
-        $requestArray = explode(" ", trim($query));
+        $requestArray = explode(" ", trim($req));
         $this->successRequest = false;
 
         if ($requestArray[0] == "SELECT" || $requestArray[0] == "INSERT" || $requestArray[0] == "UPDATE" || $requestArray[0] == "DELETE") {
-            $statement->execute();
-            $this->successRequest = true;
+            $res = $this->connection->query($req);
+
+            if ($requestArray[0] == 'SELECT') $res = $res->fetchAll();
+            if ($requestArray[0] == 'INSERT') $res = $this->connection->lastInsertId();
+
+            return $res;
         } else {
-            echo "commande fausse";
+            return false;
         }     
     }
 
-    public function selectAll(): array {
-        $query = "SELECT * FROM users";
-        $entriesStatement = $this->connection->prepare($query);
-        $this->executeRequest($query, $entriesStatement);
-        return $entriesStatement->fetchAll();
+    public function selectOne($table, $colValue, $value) {
+        $query = "SELECT * FROM `" . $table . "` WHERE `" . $colValue . "` = '" . $value . "'";
+        $res = $this->executeRequest($query);
+        return $res[0];
     } 
 
     //insert

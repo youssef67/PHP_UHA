@@ -1,7 +1,7 @@
 <?php
     session_start();
     require_once("classes/database.class.php");
-    $database = new Database();
+    require_once("classes/users.class.php");
 
     // Si formulaire de connexion envoyé, création des variables de session
     if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["identifiant"]) && isset($_POST["password"])) {
@@ -52,8 +52,6 @@
                     // Pour afficher un seul user
                     if ($_GET["action"] == "selectOne") {
                         include "components/smallMenu.php";
-                        include "commandSQL/selectOneSQL.php";
-    
                         include "components/listeOneUser.php";
                     // Pour inserer un user en base de donnée   
                     } elseif ($_GET["action"] == "insert") {

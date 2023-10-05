@@ -8,9 +8,9 @@
     <div class="form-group row">
         <label for="search-select" class="col-sm-6 col-form-label">Veuillez preciser par quel champs souhaitez-vous faire la recherche</label>
         <div class="col-sm-4">
-            <select class="form-control" name="menu-select-one" id="search-select">
+            <select class="form-control" name="select-fieldSearch" id="search-select">
                 <option value="">Veuillez choisir le champs</option>
-                <option value="id">Par id</option>
+                <option value="user_id">Par id</option>
                 <option value="firstname">Par prenom</option>
                 <option value="lastname">Par nom</option>
             </select>
@@ -19,7 +19,7 @@
     <div class="form-group row">
         <label class="col-sm-6 col-form-label">Valeur à rechercher</label>
         <div class="col-sm-4">
-            <input name="value-select-one" type="text" class="form-control"/>
+            <input name="select-valueSearch" type="text" class="form-control"/>
         </div>
     </div>
     <button class="btn btn-primary" type="submit">Valider</button>
