@@ -1,9 +1,11 @@
 <?php
+    
     if (count($_SESSION["equipeA"]) == 0) {
         header("Location: indexCombat.php?winner=EquipeB");
     } elseif (count($_SESSION["equipeB"]) == 0) {
         header("Location: indexCombat.php?winner=EquipeA");
     } else {
+        var_dump($_SESSION);
         $equipeA = $_SESSION["equipeA"];
         $equipeB = $_SESSION["equipeB"];
 

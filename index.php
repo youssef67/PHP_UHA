@@ -9,11 +9,19 @@
     //     $_SESSION["adminOk"] ? header("Location: index.php?nomPage=adminDisconnect") : header("Location: index.php?nomPage=adminConnect&error=true");
     // }
     
+<<<<<<< HEAD
     // // Si demande de connexion, suppresion des varaibles de sessions
     // if (isset($_GET["deconnexion"]) && $_GET["deconnexion"] == "ok") {
     //     session_destroy();
     //     header("Location: index.php?nomPage=accueil");
     // }
+=======
+    // Si demande de connexion, suppresion des varaibles de sessions
+    if (isset($_GET["deconnexion"]) && $_GET["deconnexion"] == "ok") {
+        session_destroy();
+        header("L-ocation: index.php?nomPage=accueil");
+    }
+>>>>>>> b659d96 (MAJ index.php)
 ?>
 <!DOCTYPE html>
 <html>

@@ -11,7 +11,7 @@
 
     //Création equipe A
     for ($i = 0; $i < $nombreCombattantParEquipe; $i++) { 
-        $indexPersoPrenom1 = rand(0, count($prenomArray)  - 1);
+        $indexPersoPrenom1 = rand(0, count($prenomArray) - 1);
         $prenomPerso1 = $prenomArray[$indexPersoPrenom1];
 
         //Arme
