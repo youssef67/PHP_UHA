@@ -4,8 +4,9 @@
     </div>
 </div>
             
-<form action="" method="POST">
+<form action="index.php" method="GET">
     <div class="form-group row">
+        <input type="text" name="action" value="listUsers" hidden>
         <label for="search-select" class="col-sm-6 col-form-label">Veuillez preciser par quel champs souhaitez-vous faire la recherche</label>
         <div class="col-sm-4">
             <select class="form-control" name="select-fieldSearch" id="search-select">

@@ -30,7 +30,7 @@ class Database {
     public function selectOne($table, $colValue, $value) {
         $query = "SELECT * FROM `" . $table . "` WHERE `" . $colValue . "` = '" . $value . "'";
         $res = $this->executeRequest($query);
-        return $res[0];
+        return $res;
     }
     
     public function insert($table, $fieldsValues, $values) {

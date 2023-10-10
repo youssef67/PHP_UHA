@@ -51,7 +51,7 @@
                 // Après validation des formulaires - Appel des requêtes SQL 
                 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_GET["action"])) {
                     // Pour afficher un seul user
-                    if ($_GET["action"] == "selectOne") {
+                    if ($_GET["action"] == "formSelectOne") {
                         include "components/listeOneUser.php";
                     // Pour inserer un user en base de donnée   
                     } elseif ($_GET["action"] == "insert") {                        

@@ -1,6 +1,11 @@
 <?php
     $userBdd = new User();
-    $users = $userBdd->selectAll();
+
+    if (isset($_GET["select-fieldSearch"]) && !empty($_GET["select-fieldSearch"])) {
+        $users = $userBdd->selectOne($_GET["select-fieldSearch"], $_GET["select-valueSearch"]);
+    } else {
+        $users = $userBdd->selectAll();
+    }
 ?>
 <div class="row">
     <div class="col m-5">
