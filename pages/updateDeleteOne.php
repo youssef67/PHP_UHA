@@ -5,8 +5,6 @@
 
 $user = $database->selectAll();
 
-var_dump($user);
-
 if (isset($editOk) && $editOk) {
     echo "<h3 style='color:green;'>Modification effectuée</h3>";
 } elseif(isset($entryDelete) && $entryDelete)

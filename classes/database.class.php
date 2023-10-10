@@ -54,14 +54,6 @@ class Database {
         $this->executeRequest($query, $entriesStatement);
         return $this->successRequest;
     }
-
-    public function checkIfAdmin($identifiant, $password) {
-        $query = "SELECT * FROM users WHERE identifiant = '" . $identifiant . "'";
-        $entriesStatement = $this->connection->prepare($query);
-        $this->executeRequest($query, $entriesStatement);
-        $user = $entriesStatement->fetchAll();
-        return ($user[0][5] == $password && $user[0][4]) ? true : false;      
-    }
 }
 
 ?>

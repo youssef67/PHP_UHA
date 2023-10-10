@@ -3,25 +3,19 @@
     require_once("classes/database.class.php");
     require_once("classes/users.class.php");
 
+    $userBdd = new User();
     // Si formulaire de connexion envoyé, création des variables de session
-    // if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["identifiant"]) && isset($_POST["password"])) {
-    //     $_SESSION["adminOk"] = $database->checkIfAdmin($_POST["identifiant"], $_POST["password"]);
-    //     $_SESSION["adminOk"] ? header("Location: index.php?nomPage=adminDisconnect") : header("Location: index.php?nomPage=adminConnect&error=true");
-    // }
+    if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["identifiant"]) && isset($_POST["password"])) {
+        $_SESSION["adminOk"] = $userBdd->checkIfAdmin($_POST["identifiant"], $_POST["password"]);
+        $_SESSION["adminOk"] ? header("Location: index.php?nomPage=adminDisconnect") : header("Location: index.php?nomPage=adminConnect&error=true");
+    }
     
-<<<<<<< HEAD
     // // Si demande de connexion, suppresion des varaibles de sessions
-    // if (isset($_GET["deconnexion"]) && $_GET["deconnexion"] == "ok") {
-    //     session_destroy();
-    //     header("Location: index.php?nomPage=accueil");
-    // }
-=======
-    // Si demande de connexion, suppresion des varaibles de sessions
     if (isset($_GET["deconnexion"]) && $_GET["deconnexion"] == "ok") {
         session_destroy();
-        header("L-ocation: index.php?nomPage=accueil");
+        header("Location: index.php?nomPage=accueil");
     }
->>>>>>> b659d96 (MAJ index.php)
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,8 +40,7 @@
                         include "pages/accueil.php";                 
                 } else {
                     if ($_SERVER['REQUEST_METHOD'] == "GET" && !empty($_GET["action"])) {
-                         if ($_GET["action"] != "adminConnect") {
-                             include "components/smallMenu.php";
+                        if ($_GET["action"] != "adminConnect") {
                              include "pages/".$_GET["action"].".php"; 
                         }
                          else
@@ -59,20 +52,20 @@
                 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_GET["action"])) {
                     // Pour afficher un seul user
                     if ($_GET["action"] == "selectOne") {
-                        include "components/smallMenu.php";
                         include "components/listeOneUser.php";
                     // Pour inserer un user en base de donnée   
-                    } elseif ($_GET["action"] == "insert") {
-                        include "components/smallMenu.php";
-                        
+                    } elseif ($_GET["action"] == "insert") {                        
                         //liste des users MAJ
                         include "components/listeOneUser.php";
                     // Pour modifier ou inserer un utilisateur
                     } else  {
-                        include "components/smallMenu.php";
-                        if (isset($_POST["editUser"])) {
+                        if (isset($_POST["updateUser"])) {
                             //Requete SQL pour recupérer les données du user à mettre à jour + affiche du forumlaire avec les données
-                            $user = $database->selectEntryByValue("user_id", $_POST["editUser"]);
+                            $userBdd = new User();
+                            //$user = $userBdd->selectOne("user_id", $_POST["editUser"]);
+
+                            //var_dump($user);
+
                             include "components/updateUser.php";
                         }
                         // requete pour supprimer un utilisateur

@@ -27,8 +27,18 @@ class User {
         $values = "('". $firstname ."','". $lastname ."','". $identifiant ."','". $password . "','" . $userRole . "')";
 
         $userId = $conn->insert($this->table, $fieldsValues,  $values);
-        return $this->selectOne("user_id", $userId);
-        
+        return $this->selectOne("user_id", $userId);    
+    }
+
+    public function update() {
+
+    }
+
+    public function checkIfAdmin($identifiant, $password) {
+        $conn = new Database();
+
+        $user = $conn->executeRequest("SELECT * FROM users WHERE identifiant = '" . $identifiant . "'");
+        return ($user[0][5] == $password && $user[0][4] == $identifiant) ? true : false;  
     }
 
 

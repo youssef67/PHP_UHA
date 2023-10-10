@@ -14,9 +14,7 @@
         echo "<h3>Récapitulatif du nouvel utilisateur</h3>";
         $user = $userBdd->insert($_POST["prenom"], $_POST["nom"], $_POST["identifiant"], $_POST["password"], $_POST["role"]);
     }
-  
 ?>
-
 <div class="row">
     <div class="col">
         <table class="table">
@@ -27,10 +25,9 @@
                     <th scope="col">Nom</th>
                     <th scope="col">Identifiant</th>
                     <th scope="col">Role</th>
-                    <?php  if($_GET["action"] == "updateDeleteOne") { 
-                        echo '<th scope="col">Action</th>';
-                    }
-                    ?>
+                    <?php   if(isset($_SESSION["adminOk"])) { ?>
+                        <th scope="col">Action</th>
+                    <?php } ?>
                 </tr>
             </thead>
             <tbody>
@@ -41,9 +38,9 @@
                         echo "<td>" . $user[2] . "</td>";
                         echo "<td>" . $user[4] . "</td>";
                         echo "<td>" . $user[3] . "</td>";
-                        if($_GET["action"] == "updateDeleteOne") {
-                            echo '<td> <a href="#" class="btn btn-primary active m-2" role="button" aria-pressed="true">Modifier</a>';
-                            echo '<a href="#" class="btn btn-secondary active" role="button" aria-pressed="true">Supprimer</a>';
+                        if(isset($_SESSION["adminOk"])) {
+                            echo '<td> <a href="index.php?action=updateUser&id_user=' . $user[0] .'" class="btn btn-primary active m-2" role="button" aria-pressed="true">Modifier</a>';
+                            echo '<a href="index.php?action=deleteUser&id_user=' . $user[0] .'" class="btn btn-secondary active" role="button" aria-pressed="true">Supprimer</a></td>';
                         }
                         
                     echo "</tr>";
