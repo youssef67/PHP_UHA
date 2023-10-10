@@ -27,6 +27,7 @@ class User {
         $values = "('". $firstname ."','". $lastname ."','". $identifiant ."','". $password . "','" . $userRole . "')";
 
         $userId = $conn->insert($this->table, $fieldsValues,  $values);
+        
         return $this->selectOne("user_id", $userId);    
     }
 

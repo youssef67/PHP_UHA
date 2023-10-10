@@ -1,21 +1,31 @@
+<div class="row">
+    <div class="col m-5">
 <?php
     $userBdd = new User();
 
+    // Récupérer le user selon les données transmises
     if (isset($_GET["select-fieldSearch"]) && !empty($_GET["select-fieldSearch"])) {
         $users = $userBdd->selectOne($_GET["select-fieldSearch"], $_GET["select-valueSearch"]);
-    } else {
+        echo "<h2>Détail de l'utilisateur</h3>";
+    }
+    // Récupéère le dernier user insérer en BDD
+    elseif(isset($_POST["insert-prenom"]) && !empty($_POST["insert-prenom"])) {
+        $users = $userBdd->insert($_POST["insert-prenom"], $_POST["insert-nom"], $_POST["insert-identifiant"], $_POST["insert-password"], $_POST["insert-role"]);
+        echo "<h2 style='margin: 30px;'>Entrée validée</h2>";
+        echo "<h3>Récapitulatif du nouvel utilisateur</h3>";
+    } 
+    else {
         $users = $userBdd->selectAll();
+        echo "<h2 style='margin: 30px;'>Liste des utilisateurs</h2>";
     }
 ?>
-<div class="row">
-    <div class="col m-5">
-        <h2 class="display-5 text-center">Liste des users</h2>
     </div>
 </div>
+
 <?php   if(isset($_SESSION["adminOk"])) { ?>
 <div class="row">
     <div class="col">
-        <a href="index.php?action=insert" class="btn btn-primary active m-2" role="button" aria-pressed="true">Ajouter un utilisateur</a>
+        <a href="index.php?action=formInsert" class="btn btn-primary active m-2" role="button" aria-pressed="true">Ajouter un utilisateur</a>
     </div>
 </div>
 <?php } ?>
