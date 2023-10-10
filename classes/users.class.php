@@ -31,8 +31,15 @@ class User {
         return $this->selectOne("user_id", $userId);    
     }
 
-    public function update() {
+    public function update($id, $firstname, $lastname, $identifiant, $role) {
+        $conn = new Database();
+        $conn->executeRequest("UPDATE `users` 
+        SET `firstname`='". $firstname . "', `lastname`= '" . $lastname . "', `user_role`= '" . $role . "', `identifiant`= '" . $identifiant . "' WHERE `user_id`=". $id);
+    }
 
+    public function delete($id) {
+        $conn = new Database();
+        $conn->delete($this->table, "user_id", $id);
     }
 
     public function checkIfAdmin($identifiant, $password) {

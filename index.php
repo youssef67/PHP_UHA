@@ -26,7 +26,7 @@
     </head> 
     <body>
         <!-- Chargement du header -->   
-        <?php include "components/header.php"; ?>
+        <?php include "pages/header.php"; ?>
         <div class="container-fluid text-center">         
             <?php 
                 if (count($_GET) == 0 || !empty($_GET["nomPage"])) {
@@ -39,7 +39,7 @@
                     } else 
                         include "pages/accueil.php";                 
                 } else {
-                    if ($_SERVER['REQUEST_METHOD'] == "GET" && !empty($_GET["action"])) {
+                    if ($_SERVER['REQUEST_METHOD'] == "GET" && !empty($_GET["action"]) && $_GET["action"] != "deleteUser") {
                         if ($_GET["action"] != "adminConnect") {
                              include "pages/".$_GET["action"].".php"; 
                         }
@@ -49,43 +49,11 @@
                 }
 
                 // Après validation des formulaires - Appel des requêtes SQL 
-                if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_GET["action"])) {
-                    if ($_GET["action"] == "formInsert") {                        
-                        //liste des users MAJ
+                if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                    if ($_GET["action"] == "formInsert" || $_GET["action"] == "formUpdate")                       
                         include "pages/listUsers.php";
-                    // Pour modifier ou inserer un utilisateur
-                    } else  {
-                        if (isset($_POST["updateUser"])) {
-                            //Requete SQL pour recupérer les données du user à mettre à jour + affiche du forumlaire avec les données
-                            $userBdd = new User();
-                            //$user = $userBdd->selectOne("user_id", $_POST["editUser"]);
-
-                            //var_dump($user);
-
-                            include "components/updateUser.php";
-                        }
-                        // requete pour supprimer un utilisateur
-                        if (isset($_POST["deleteUser"])) {
-                            $database->deleteEntry($_POST["deleteUser"]);
-                            $entryDelete = true;
-                        }
-                    }
-                }
-
-                // Mise a jour du user dans la base SQL
-                if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["nom-valide"]) && !empty($_POST["nom-valide"])) {
-                    $database->updateEntry($_POST["id"], $_POST["prenom"], $_POST["nom-valide"], $_POST["identifiant"], $_POST["role"]);
-
-                    $editOk = true;
-
-                    // Affichage de la liste des users avec les modifications effectuées
-                    include "pages/updateDeleteOne.php";
-                }
-
-                // Affichage de la liste des users avec l'entrée effacée
-                if (isset($entryDelete) && $entryDelete) {
-                    include "pages/updateDeleteOne.php";
-                }        
+                } elseif(isset($_GET["action"]) && $_GET["action"] == "deleteUser") 
+                        include "pages/listUsers.php";  
             ?>  
         </div>
     </body>

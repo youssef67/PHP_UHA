@@ -20,6 +20,7 @@ class Database {
 
             if ($requestArray[0] == 'SELECT') $res = $res->fetchAll();
             if ($requestArray[0] == 'INSERT') $res = $this->connection->lastInsertId();
+            if ($requestArray[0] == 'DELETE') $res = true;
 
             return $res;
         } else {
@@ -39,20 +40,12 @@ class Database {
         return $res;
     }
 
-    //update
-    public function updateEntry($id, $firstname, $lastname, $identifiant, $role) {
-        $query = "UPDATE `users` SET `firstname`='". $firstname . "', `lastname`= '" . $lastname . "', `user_role`= '" . $role . "', `identifiant`= '" . $identifiant . "' WHERE `user_id`=". $id;
-        $entriesStatement = $this->connection->prepare($query);
-        $this->executeRequest($query, $entriesStatement);
-        return $this->successRequest;
-    }
 
     //delete
-    public function deleteEntry($id) {
-        $query = "DELETE FROM `users` WHERE `user_id`=" . $id;
-        $entriesStatement = $this->connection->prepare($query);
-        $this->executeRequest($query, $entriesStatement);
-        return $this->successRequest;
+    public function delete($table, $colValue, $value) {
+        $query =  "DELETE FROM `" . $table . "` WHERE `" . $colValue . "` = '" . $value . "'";
+        $res = $this->executeRequest($query);
+        return $res;
     }
 }
 
